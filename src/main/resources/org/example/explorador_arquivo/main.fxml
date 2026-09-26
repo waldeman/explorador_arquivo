@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox>
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="Novo" />
+                <Menu mnemonicParsing="false" text="Renomear" />
+                <Menu mnemonicParsing="false" text="Excluir" />
+              </menus>
+            </MenuBar>
+            <HBox prefHeight="374.0" prefWidth="600.0" spacing="15.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" />
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox prefHeight="200.0" prefWidth="100.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</StackPane>
