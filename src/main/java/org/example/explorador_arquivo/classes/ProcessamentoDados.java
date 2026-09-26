@@ -26,6 +26,7 @@ public class ProcessamentoDados {
                     bufferedWriter.write(i);
                     if ( cont < linha.size()){
                         bufferedWriter.write("/");
+                        cont++;
                     }
 
                 }
