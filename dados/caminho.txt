@@ -1,0 +1,4 @@
+c/area_de_trabalho
+c/dowloads
+c/documentos
+c/imagens
