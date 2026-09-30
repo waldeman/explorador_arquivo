@@ -1,29 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.explorador_arquivo.HelloController">
    <children>
       <VBox>
          <children>
             <MenuBar>
               <menus>
-                <Menu mnemonicParsing="false" text="Novo" />
-                <Menu mnemonicParsing="false" text="Renomear" />
-                <Menu mnemonicParsing="false" text="Excluir" />
+                <Menu mnemonicParsing="false" text="Novo">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#novoDiretorio" text="Diretório" />
+                        <MenuItem mnemonicParsing="false" onAction="#novoArquivo" text="Arquivo" />
+                     </items></Menu>
+                <Menu mnemonicParsing="false" text="Renomear">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#renomear" text="Renomear" />
+                     </items></Menu>
+                <Menu mnemonicParsing="false" text="Excluir">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#excluir" text="Excluir" />
+                     </items></Menu>
               </menus>
             </MenuBar>
+            <HBox prefHeight="38.0" prefWidth="600.0" spacing="90.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#voltar" text="⬅" />
+                  <Label fx:id="labelCaminho" text="Label" />
+               </children>
+            </HBox>
             <HBox prefHeight="374.0" prefWidth="600.0" spacing="15.0">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0" />
+                  <VBox fx:id="vboxLabels" prefHeight="350.0" prefWidth="164.0" spacing="20.0">
+                     <children>
+                        <Label fx:id="pastaLabel" text="Label" />
+                        <Label fx:id="pastaLabel" text="Label" />
+                        <Label fx:id="pastaLabel" text="Label" />
+                        <Label fx:id="pastaLabel" text="Label" />
+                     </children></VBox>
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
-                  <VBox prefHeight="200.0" prefWidth="100.0" />
+                  <VBox fx:id="vboxLabels2" prefHeight="350.0" prefWidth="405.0" />
                </children>
             </HBox>
          </children>
