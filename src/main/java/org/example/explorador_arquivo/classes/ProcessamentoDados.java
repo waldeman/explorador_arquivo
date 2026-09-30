@@ -17,7 +17,7 @@ public class ProcessamentoDados {
         }
         return linhas;
     }
-    public static void transformarListaEmArquivo(String caminho, List<List<String>> linhas) throws FileNotFoundException {
+    public static void transformarListaEmArquivo(List<List<String>> linhas, String caminho) throws FileNotFoundException {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(caminho))) {
             int cont;
             for (List<String> linha : linhas) {

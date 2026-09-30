@@ -1,4 +1,10 @@
-c/area_de_trabalho
-c/dowloads
-c/documentos
-c/imagens
+C:/Area_de_trabalho
+C:/Area_de_trabalho/ex01.java
+C:/Area_de_trabalho/ex02.py
+C:/Area_de_trabalho/leitura.txt
+C:/Area_de_trabalho/tabela.doc
+C:/Downloads
+C:/Downloads/roblox
+C:/Downloads/roblox/roblox.exe
+C:/Documentos
+C:/Imagens
