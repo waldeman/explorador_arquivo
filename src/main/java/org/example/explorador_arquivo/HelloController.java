@@ -43,16 +43,17 @@ public class HelloController {
         atualizarCaminho();
 
     }
+
     @FXML
     public void novoDiretorio(ActionEvent actionEvent) throws FileNotFoundException {
         TextInputDialog dialogo = new TextInputDialog();
         dialogo.setTitle("Novo Diretório");
         dialogo.setHeaderText("Digite o nome do Diretório:");
         Optional<String> resultado = dialogo.showAndWait();
-        if (!resultado.isEmpty()){
-            this.diretorioSelecionado.getItens().add(new Diretorio(resultado.get(),this.diretorioSelecionado));
+        if (!resultado.isEmpty()) {
+            this.diretorioSelecionado.getItens().add(new Diretorio(resultado.get(), this.diretorioSelecionado));
         }
-        if(this.diretorioSelecionado.equals(this.c)){
+        if (this.diretorioSelecionado.equals(this.c)) {
             iniciarTextoLabels();
             salvarArvore();
             return;
@@ -60,18 +61,19 @@ public class HelloController {
         iniciarTextoLabels2(this.diretorioSelecionado);
         salvarArvore();
     }
+
     @FXML
     public void novoArquivo(ActionEvent actionEvent) throws FileNotFoundException {
         TextInputDialog dialogo = new TextInputDialog();
         dialogo.setTitle("Novo Arquivo");
         dialogo.setHeaderText("Digite o nome do Arquivo:");
         Optional<String> resultado = dialogo.showAndWait();
-        if (!resultado.isEmpty()){
+        if (!resultado.isEmpty()) {
             String nomeArquivo = resultado.get();
             String[] lista = nomeArquivo.split("\\.");
-            this.diretorioSelecionado.getItens().add(new Arquivo(lista[0],lista[1],this.diretorioSelecionado));
+            this.diretorioSelecionado.getItens().add(new Arquivo(lista[0], lista[1], this.diretorioSelecionado));
         }
-        if(this.diretorioSelecionado.equals(this.c)){
+        if (this.diretorioSelecionado.equals(this.c)) {
             iniciarTextoLabels();
             salvarArvore();
             return;
@@ -79,6 +81,7 @@ public class HelloController {
         iniciarTextoLabels2(this.diretorioSelecionado);
         salvarArvore();
     }
+
     @FXML
     public void renomear(ActionEvent actionEvent) throws FileNotFoundException {
         Diretorio pai = this.itemSelecionado.getDiretorioPai();
@@ -86,9 +89,9 @@ public class HelloController {
         dialogo.setTitle("Novo Nome");
         dialogo.setHeaderText("Digite o Novo Nome:");
         Optional<String> resultado = dialogo.showAndWait();
-        if (pai != null && !resultado.isEmpty()){
-            for(Item item : pai.getItens()){
-                if (item.equals(itemSelecionado)){
+        if (pai != null && !resultado.isEmpty()) {
+            for (Item item : pai.getItens()) {
+                if (item.equals(itemSelecionado)) {
                     if (item instanceof Diretorio) {
                         item.setNome(resultado.get());
                     } else if (item instanceof Arquivo) {
@@ -98,7 +101,7 @@ public class HelloController {
                     }
                 }
             }
-            if(this.diretorioSelecionado.equals(this.c)){
+            if (this.diretorioSelecionado.getDiretorioPai().equals(this.c)) {
                 iniciarTextoLabels();
                 salvarArvore();
                 return;
@@ -109,14 +112,15 @@ public class HelloController {
         }
 
     }
+
     @FXML
     public void excluir(ActionEvent actionEvent) throws FileNotFoundException {
         Diretorio pai = this.itemSelecionado.getDiretorioPai();
-        if (pai != null){
+        if (pai != null) {
             pai.getItens().remove(this.itemSelecionado);
             this.diretorioSelecionado = pai;
             this.itemSelecionado = pai;
-            if(this.diretorioSelecionado.equals(this.c)){
+            if (this.diretorioSelecionado.equals(this.c)) {
                 iniciarTextoLabels();
                 salvarArvore();
 
@@ -128,14 +132,15 @@ public class HelloController {
         }
 
     }
+
     @FXML
-    public void voltar(){
-        if (this.diretorioSelecionado.equals(this.c)){
+    public void voltar() {
+        if (this.diretorioSelecionado.equals(this.c)) {
             return;
         }
         this.diretorioSelecionado = this.diretorioSelecionado.getDiretorioPai();
         this.itemSelecionado = this.diretorioSelecionado;
-        if (this.diretorioSelecionado.equals(this.c)){
+        if (this.diretorioSelecionado.equals(this.c)) {
             iniciarTextoLabels();
             atualizarCaminho();
             iniciarTextoLabels2(this.diretorioSelecionado);
@@ -144,8 +149,10 @@ public class HelloController {
         iniciarTextoLabels2(this.diretorioSelecionado);
         atualizarCaminho();
     }
+
     public HBox criarItemVisual(Item item) {
         HBox hBox = new HBox();
+        hBox.getStyleClass().add("h-box");
         hBox.setSpacing(10);
         Label label = null;
         Image image;
@@ -156,7 +163,7 @@ public class HelloController {
             imageView = new ImageView(image);
             label = new Label(item.getNome());
         } else if (item instanceof Arquivo) {
-            if (((Arquivo) item).getTipo().equals("pdf")){
+            if (((Arquivo) item).getTipo().equals("pdf")) {
                 image = new Image(getClass().getResourceAsStream("/org/example/explorador_arquivo/imagens/icone_pdf.png"));
             } else if (((Arquivo) item).getTipo().equals("py")) {
                 image = new Image(getClass().getResourceAsStream("/org/example/explorador_arquivo/imagens/icone_python.png"));
@@ -164,11 +171,11 @@ public class HelloController {
                 image = new Image(getClass().getResourceAsStream("/org/example/explorador_arquivo/imagens/icone_java.png"));
             } else if (((Arquivo) item).getTipo().equals("doc")) {
                 image = new Image(getClass().getResourceAsStream("/org/example/explorador_arquivo/imagens/icone_doc.png"));
-            }else{
+            } else {
                 image = new Image(getClass().getResourceAsStream("/org/example/explorador_arquivo/imagens/ícone_texto.png"));
             }
             imageView = new ImageView(image);
-            label = new Label(item.getNome()+"."+ ((Arquivo) item).getTipo());
+            label = new Label(item.getNome() + "." + ((Arquivo) item).getTipo());
         }
         imageView.setFitWidth(20);
         imageView.setPreserveRatio(true);
@@ -176,24 +183,24 @@ public class HelloController {
         hBox.getChildren().add(label);
         return hBox;
     }
+
     public void atualizarCaminho() {
         List<String> caminho = new ArrayList<>();
         Item itemAtual = this.itemSelecionado;
         if (itemAtual instanceof Diretorio) {
             caminho.add(itemAtual.getNome());
-        }
-        else if (itemAtual instanceof Arquivo) {
-            caminho.add(itemAtual.getNome()+"."+((Arquivo) itemAtual).getTipo());
+        } else if (itemAtual instanceof Arquivo) {
+            caminho.add(itemAtual.getNome() + "." + ((Arquivo) itemAtual).getTipo());
         }
 
-        while (itemAtual.getDiretorioPai() != null){
+        while (itemAtual.getDiretorioPai() != null) {
             itemAtual = itemAtual.getDiretorioPai();
             caminho.add(itemAtual.getNome());
         }
         String texto = "";
-        for (int i = caminho.size()-1; i >= 0; i--) {
+        for (int i = caminho.size() - 1; i >= 0; i--) {
             texto += caminho.get(i);
-            if (i != 0){
+            if (i != 0) {
                 texto += " > ";
             }
 
@@ -201,14 +208,16 @@ public class HelloController {
         this.labelCaminho.setText(texto);
 
     }
+
     public void salvarArvore() throws FileNotFoundException {
         List<String> caminhoAtual = new ArrayList<>();
         caminhoAtual.add("C:");
         List<List<String>> caminhos = new ArrayList<>();
         List<List<String>> caminhoFinal = caminhoRecursivo(caminhos, this.c.getItens(), caminhoAtual);
-        ProcessamentoDados.transformarListaEmArquivo(caminhoFinal,"dados/caminho.txt");
+        ProcessamentoDados.transformarListaEmArquivo(caminhoFinal, "dados/caminho.txt");
 
     }
+
     public void iniciarTextoLabels() {
         vboxLabels.getChildren().clear();
         for (Item item : c.getItens()) {
@@ -219,9 +228,9 @@ public class HelloController {
         iniciarTextoLabels2(this.diretorioSelecionado);
     }
 
-    public void iniciarTextoLabels2(Diretorio    diretorio) {
+    public void iniciarTextoLabels2(Diretorio diretorio) {
         vboxLabels2.getChildren().clear();
-        if (this.itemSelecionado.equals(this.c)){
+        if (this.itemSelecionado.equals(this.c)) {
             Label label = new Label();
             label.setText("Nenhum arquivo ou pasta selecionado.");
             vboxLabels2.getChildren().add(label);
@@ -241,7 +250,7 @@ public class HelloController {
                 this.itemSelecionado = item;
                 iniciarTextoLabels2((Diretorio) item);
 
-            }else if (item instanceof Arquivo){
+            } else if (item instanceof Arquivo) {
                 this.itemSelecionado = item;
             }
             atualizarCaminho();
@@ -277,15 +286,16 @@ public class HelloController {
 
                 if (i == caminho.size() - 1 && nome.contains(".")) {
                     String[] partes = nome.split("\\.");
-                    atual.getItens().add(new Arquivo(partes[0], partes[1],atual));
+                    atual.getItens().add(new Arquivo(partes[0], partes[1], atual));
                 } else {
-                    Diretorio novoDiretorio = new Diretorio(nome,atual);
+                    Diretorio novoDiretorio = new Diretorio(nome, atual);
                     atual.getItens().add(novoDiretorio);
                     atual = novoDiretorio;
                 }
             }
         }
     }
+
     public static List<List<String>> caminhoRecursivo(List<List<String>> caminhos, List<Item> itens, List<String> caminhoAtual) {
         if (itens.isEmpty()) {
             return caminhos;
@@ -299,7 +309,7 @@ public class HelloController {
             caminhoRecursivo(caminhos, itens.subList(1, itens.size()), caminhoAtual);
         }
         if (itens.get(0) instanceof Arquivo) {
-            caminhoAtual.add(itens.get(0).getNome()+"."+((Arquivo) itens.get(0)).getTipo());
+            caminhoAtual.add(itens.get(0).getNome() + "." + ((Arquivo) itens.get(0)).getTipo());
             caminhos.add(new ArrayList<>(caminhoAtual));
             caminhoAtual.remove(caminhoAtual.size() - 1);
             caminhoRecursivo(caminhos, itens.subList(1, itens.size()), caminhoAtual);

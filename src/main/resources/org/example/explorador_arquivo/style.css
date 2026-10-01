@@ -1,6 +1,11 @@
-.root{
+.root {
     -fx-background-color: white;
 }
-.button{
+
+.button {
     -fx-background-color: white;
+}
+
+.h-box:hover {
+    -fx-background-color: #4bb5ff;
 }

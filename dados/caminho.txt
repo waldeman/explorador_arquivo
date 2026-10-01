@@ -7,4 +7,4 @@ C:/Downloads
 C:/Downloads/roblox
 C:/Downloads/roblox/roblox.exe
 C:/Documentos
-C:/Imagens
+C:/imagens
